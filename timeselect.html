@@ -1,0 +1,35 @@
+<!-- timeselect.html Allen Meyer 2018 -->
+
+<html lang = "en">
+	<head>
+		<meta charset = "utf-8">
+		<title> Chess Time Select </title>
+		<link rel = "stylesheet" type = "text/css" href = "timeselectstyle.css">
+		<script type = "text/javascript" src = "timeselectlogic.js"> </script>
+	</head>
+	<body>
+		<div id = 'wrapper'>
+			<table id = 'timecontrols'>
+				<caption> Select your Time Control </caption>
+				<tr>
+					<td id = '1' onclick = 'redirect(this)'> 1 Minute </td>
+					<td id = '3' onclick = 'redirect(this)'> 3 Minutes </td>
+					<td id = '5' onclick = 'redirect(this)'> 5 Minutes </td>
+				</tr>
+				<tr> 
+					<td id = '10' onclick = 'redirect(this)'> 10 Minutes </td>
+					<td id = '15' onclick = 'redirect(this)'> 15 Minutes </td>
+					<td id = '30' onclick = 'redirect(this)'> 30 Minutes </td>
+				</tr>
+				<tr> 
+					<td id = '45' onclick = 'redirect(this)'> 45 Minutes </td>
+					<td id = '50' onclick = 'redirect(this)'> 60 Minutes </td>
+					<td id = '90' onclick = 'redirect(this)'> 90 Minutes </td>
+				</tr>
+			</table>
+			<br/>
+			<label> Custom Time in Minutes: <input type = 'text' id = 'custominput'> </label>
+			<input type = 'button' value = 'Submit' onclick = 'customredirect()'>	
+		</div>
+	</body>
+</html>

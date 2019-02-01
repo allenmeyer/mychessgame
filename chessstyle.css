@@ -1,0 +1,150 @@
+html {
+	background-color: grey;
+	font-size: 20px;
+}
+
+#chesselement {
+	width: 100%;
+	height: 100%;
+}
+
+#promotionmenu {
+	float: left;
+	width: 25%;
+	height: 100%;
+	visibility: hidden;
+}
+
+#promotionmenu > th {
+	text-align: center;
+}
+
+#promotionmenu > table {
+	float: right;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+#promotioninput > label {
+	vertical-align: middle;
+	float: left;
+}
+
+#promotioninput	input[type = "radio"]{
+	vertical-align: bottom;
+}
+
+#chesstable {
+	float: left;
+	height: 100%;
+	text-align: center;
+}
+
+#chessmenu {
+	float: left;
+	width: 25%;
+	height: 100%;
+}
+
+#blacktimer {
+	margin-top: 1.5px;
+	vertical-align: top;
+	float: left;
+	border: 1px solid white;
+	min-height: 43.5px;
+	font-size: 43.5px;
+	background-color: black;
+	color: white;
+}
+
+#movedisplay {
+	width: 100%;
+}
+
+#scrolltable {
+	margin-top: .5px;
+	margin-bottom: .5px;
+	height: 314px;
+	float: left;
+	width: 50%;
+	margin-right: 36%;
+	border: 1px solid black;
+	overflow-y: auto;
+	font-size: 17px;
+}
+
+#scrolltable td {
+	width: 50%;
+}
+
+#chessmenu tr {
+	height: 25px;
+	width: 100%;
+}
+
+#movedisplay > tr:nth-child(odd) {
+	background-color: gainsboro;
+	vertical-align: top;
+	height: 25px;
+}
+
+#movedisplay > tr:nth-child(even) {
+	background-color: darkgray;
+	vertical-align: top;
+	height: 25px;
+}
+
+#whitetimer {
+	vertical-align: bottom;
+	float: left;
+	border: 1px solid black;
+	min-height: 43.5px;
+	font-size: 43.5px;
+	background-color: white;
+}
+
+#chesstable td {
+	position: relative;
+	height: 50px;
+	width: 50px;
+}
+
+.rowlabel {
+	text-align: right;
+}
+
+#columnlabel {
+	vertical-align: top;
+}
+
+.black {
+	background-color: brown;
+}
+
+.white {
+	background-color: tan;
+}
+
+.piece {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	height: 80%;
+	width: 80%;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.dot {
+	position: relative;
+	vertical-align: middle;
+	margin-left: 10px;
+	height: 60%;
+	width: 60%;
+	z-index: 100;
+	cursor: pointer;
+}
+
+#pausebutton {
+	cursor: pointer;
+}

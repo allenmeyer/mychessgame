@@ -1,0 +1,19 @@
+#wrapper {
+	height: 100%;
+	margin: auto;
+	text-align: center;
+}
+
+#timecontrols {
+	text-align: center;
+	margin: 0 auto;
+}
+
+td {
+	width: 75px;
+	height: 75px;
+	font-size: 20px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+}
