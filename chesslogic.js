@@ -489,6 +489,9 @@ function movePiece(dot) {
 	
 		var type = selectedPiece.type;
 		if (type == 'pawn') {
+			if (!selectedPiece.hasmoved) {
+				selectedPiece.hasmoved = true;
+			}
 			if (selectedPiece.team == 'white') {
 				promotion = checkPromotion(selectedPiece);
 				prevMove = new Move(currentloc, square.id, prevMove, [whitepieces[index]]);
@@ -1000,10 +1003,6 @@ function blackpawnMoveableSquares(pawn) {
 					squares.push(testsquare);
 				}
 			}
-			var enPassantSquare = captureEnPassantSquares(pawn);
-			if (enPassantSquare !== undefined) {
-				squares.push($(enPassantSquare));
-			}
 		} else {
 			var testsquare1loc = pawn.location.substring(0,1) + (pawn.location.substring(1,2) - 1).toString()
 			var testsquare1 = $(testsquare1loc);
@@ -1020,24 +1019,38 @@ function blackpawnMoveableSquares(pawn) {
 				}
 			}
 		}
-		var capturesquare1loc = (parseInt(pawn.location.substring(0,1),10) - 1).toString() + (pawn.location.substring(1,2) - 1).toString();
-		var capturesquare1 = $(capturesquare1loc);
-		if (!isOutOfBounds(capturesquare1loc)) {
-			if (isOccupied(capturesquare1loc)) {
-				if (isOppositeTeam(pawn, getPieceByLocation(capturesquare1loc))) {
-					if (isLegalMove(pawn, capturesquare1loc)) {				
-						squares.push(capturesquare1);
+		if (prevMove !== undefined) {
+			var capturesquare1loc = (parseInt(pawn.location.substring(0,1),10) - 1).toString() + (pawn.location.substring(1,2) - 1).toString();
+			var capturesquare1 = $(capturesquare1loc);
+			if (!isOutOfBounds(capturesquare1loc)) {
+				if (isOccupied(capturesquare1loc)) {
+					if (isOppositeTeam(pawn, getPieceByLocation(capturesquare1loc))) {
+						if (isLegalMove(pawn, capturesquare1loc)) {				
+							squares.push(capturesquare1);
+						}
+					}
+				} else if (prevMove.piece[0].type == 'pawn') { // Check for en pessant capture
+					if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == 1) {
+						if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
+							squares.push(capturesquare1);
+						}
 					}
 				}
 			}
-		}
-		var capturesquare2loc = (parseInt(pawn.location.substring(0,1), 10) + 1).toString() + (pawn.location.substring(1,2) - 1).toString();
-		var capturesquare2 = $(capturesquare2loc);
-		if (!isOutOfBounds(capturesquare2loc)) {
-			if (isOccupied(capturesquare2loc)) {
-				if (isOppositeTeam(pawn, getPieceByLocation(capturesquare2loc))) {
-					if (isLegalMove(pawn, capturesquare1loc)) {
-						squares.push(capturesquare2);
+			var capturesquare2loc = (parseInt(pawn.location.substring(0,1), 10) + 1).toString() + (pawn.location.substring(1,2) - 1).toString();
+			var capturesquare2 = $(capturesquare2loc);
+			if (!isOutOfBounds(capturesquare2loc)) {
+				if (isOccupied(capturesquare2loc)) {
+					if (isOppositeTeam(pawn, getPieceByLocation(capturesquare2loc))) {
+						if (isLegalMove(pawn, capturesquare1loc)) {
+							squares.push(capturesquare2);
+						}
+					}
+				} else if (prevMove.piece[0].type == 'pawn') { // Check for en pessant capture
+					if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == -1) {
+						if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
+							squares.push(capturesquare2);
+						}
 					}
 				}
 			}
@@ -1073,10 +1086,6 @@ function whitepawnMoveableSquares(pawn) {
 					squares.push(testsquare);
 				}
 			}
-			var enPassantSquare = captureEnPassantSquares(pawn);
-			if (enPassantSquare !== undefined) {
-				squares.push($(enPassantSquare));
-			}
 		} else {
 			var testsquare1loc = pawn.location.substring(0,1) + (parseInt(pawn.location.substring(1,2), 10) + 1).toString()
 			var testsquare1 = $(testsquare1loc);
@@ -1094,24 +1103,38 @@ function whitepawnMoveableSquares(pawn) {
 			}
 		}	
 		
-		var capturesquare1loc = (pawn.location.substring(0,1) - 1).toString() + (parseInt(pawn.location.substring(1,2), 10) + 1).toString();
-		var capturesquare1 = $(capturesquare1loc);
-		if (!isOutOfBounds(capturesquare1loc)) {
-			if (isOccupied(capturesquare1loc)) {	
-				if (isOppositeTeam(pawn, getPieceByLocation(capturesquare1loc))) {	
-					if (isLegalMove(pawn, capturesquare1loc)) {
-						squares.push(capturesquare1);
+		if (prevMove !== undefined) {
+			var capturesquare1loc = (pawn.location.substring(0,1) - 1).toString() + (parseInt(pawn.location.substring(1,2), 10) + 1).toString();
+			var capturesquare1 = $(capturesquare1loc);
+			if (!isOutOfBounds(capturesquare1loc)) {
+				if (isOccupied(capturesquare1loc)) {	
+					if (isOppositeTeam(pawn, getPieceByLocation(capturesquare1loc))) {	
+						if (isLegalMove(pawn, capturesquare1loc)) {
+							squares.push(capturesquare1);
+						}
+					}
+				} else if (prevMove.piece[0].type == 'pawn') { // Check for en pessant capture
+					if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == 1) {
+						if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
+							squares.push(capturesquare1);
+						}
 					}
 				}
 			}
-		}
-		var capturesquare2loc = (parseInt(pawn.location.substring(0,1), 10) + 1).toString() + (parseInt(pawn.location.substring(1,2),10) + 1).toString();
-		var capturesquare2 = $(capturesquare2loc);
-		if (!isOutOfBounds(capturesquare2loc)) {
-			if (isOccupied(capturesquare2loc)) {	
-				if (isOppositeTeam(pawn, getPieceByLocation(capturesquare2loc))) {	
-					if (isLegalMove(pawn, capturesquare2loc)) {
-						squares.push(capturesquare2);
+			var capturesquare2loc = (parseInt(pawn.location.substring(0,1), 10) + 1).toString() + (parseInt(pawn.location.substring(1,2),10) + 1).toString();
+			var capturesquare2 = $(capturesquare2loc);
+			if (!isOutOfBounds(capturesquare2loc)) {
+				if (isOccupied(capturesquare2loc)) {	
+					if (isOppositeTeam(pawn, getPieceByLocation(capturesquare2loc))) {	
+						if (isLegalMove(pawn, capturesquare2loc)) {
+							squares.push(capturesquare2);
+						}
+					}
+				}  else if (prevMove.piece[0].type == 'pawn') { // Check for en pessant capture
+					if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == -1) {
+						if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
+							squares.push(capturesquare2);
+						}
 					}
 				}
 			}
@@ -1134,51 +1157,6 @@ function whitepawnAttackedSquares(pawn) {
 		attackedsquares.push(capturesquare2loc);
 	}
 	return attackedsquares;
-}
-
-// check if a pawn can capture 'en passant', return the square(s) it can if so
-function captureEnPassantSquares(pawn) {
-	if (pawn.team == 'white' && pawn.location.substring(1,2) == '5') {
-		prevMovedPiece = prevMove.piece[0];
-		if (prevMovedPiece.type == 'pawn') {
-			if (prevMove.prevloc.substring(1,2) == '7' && prevMove.newloc.substring(1,2) == '5') {
-				var enPassantSquare = prevMove.newloc.substring(0,1) + (parseInt(prevMove.newloc.substring(1,2)) + 1).toString();
-				prevMovedPiece.isCaptured = true;
-				if (isLegalMove(pawn, enPassantSquare)) {
-					prevMovedPiece.isCaptured = false;
-					return enPassantSquare;
-				} else {
-					prevMovedPiece.isCaptured = false;
-					return;
-				}
-			} else {
-				return;
-			}
-		} else {
-			return;
-		}
-	} else if (pawn.team == 'black' && pawn.location.substring(1,2) == '4') {
-		prevMovedPiece = prevMove.piece[0];
-		if (prevMovedPiece.type == 'pawn') {
-			if (prevMove.prevloc.substring(1,2) == '2' && prevMove.newloc.substring(1,2) == '4') {
-				prevMovedPiece.isCaptured = true;
-				var enPassantSquare = prevMove.newloc.substring(0,1) + (prevMove.newloc.substring(1,2) - 1).toString();
-				if (isLegalMove(pawn, enPassantSquare)) {
-					prevMovedPiece.isCaptured = false;
-					return enPassantSquare;
-				} else {
-					prevMovedPiece.isCaptured = false;
-					return;
-				}
-			} else {
-				return;
-			}
-		} else {
-			return;
-		}
-	} else {
-		return;
-	}
 }
 
 // checks if a pawn should be promoted
