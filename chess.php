@@ -11,8 +11,8 @@
 	<head>
 		<meta charset = "utf-8">
 		<title> Chess </title>
-		<link rel = "stylesheet" type = "text/css" href = "chessstyle.css">
-		<script type = "text/javascript" src = "chesslogic.js" defer> </script>
+		<link rel = "stylesheet" type = "text/css" href = "http://www-users.cselabs.umn.edu/~meye2348/chessgame/chessstyle.css">
+		<script type = "text/javascript" src = "http://www-users.cselabs.umn.edu/~meye2348/chessgame/chesslogic.js" defer> </script>
 	</head>
 	<body>
 		<div id = "chesselement">
