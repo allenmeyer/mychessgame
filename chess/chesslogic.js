@@ -1030,9 +1030,11 @@ function blackpawnMoveableSquares(pawn) {
 						}
 					}
 				} else if (prevMove.piece[0].type == 'pawn') { // Check for en pessant capture
-					if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == 1) {
-						if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
-							squares.push(capturesquare1);
+					if (pawn.location.substring(1,2) == prevMove.piece[0].location.substring(1,2)) {
+						if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == 1) {
+							if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
+								squares.push(capturesquare1);
+							}
 						}
 					}
 				}
@@ -1047,9 +1049,11 @@ function blackpawnMoveableSquares(pawn) {
 						}
 					}
 				} else if (prevMove.piece[0].type == 'pawn') { // Check for en pessant capture
-					if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == -1) {
-						if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
-							squares.push(capturesquare2);
+					if (pawn.location.substring(1,2) == prevMove.piece[0].location.substring(1,2)) {
+						if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == -1) {
+							if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
+								squares.push(capturesquare2);
+							}
 						}
 					}
 				}
@@ -1114,9 +1118,11 @@ function whitepawnMoveableSquares(pawn) {
 						}
 					}
 				} else if (prevMove.piece[0].type == 'pawn') { // Check for en pessant capture
-					if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == 1) {
-						if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
-							squares.push(capturesquare1);
+					if (pawn.location.substring(1,2) == prevMove.piece[0].location.substring(1,2)) {
+						if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == 1) {
+							if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
+								squares.push(capturesquare1);
+							}
 						}
 					}
 				}
@@ -1131,9 +1137,11 @@ function whitepawnMoveableSquares(pawn) {
 						}
 					}
 				}  else if (prevMove.piece[0].type == 'pawn') { // Check for en pessant capture
-					if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == -1) {
-						if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
-							squares.push(capturesquare2);
+					if (pawn.location.substring(1,2) == prevMove.piece[0].location.substring(1,2)) {
+						if (pawn.location.substring(0,1) - prevMove.prevloc.substring(0,1) == -1) {
+							if (Math.abs(prevMove.prevloc.substring(1,2) - prevMove.newloc.substring(1,2)) == 2) {
+								squares.push(capturesquare2);
+							}
 						}
 					}
 				}
