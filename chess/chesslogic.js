@@ -482,7 +482,6 @@ function movePiece(dot) {
 		removePiece(square);
 	}
 	if (castledinfo == '') {
-		//piece = copyPiece(selectedPiece);
 		selectedPiece.location = square.id;
 		addPieceToSquare(selectedPiece, square);
 		$(currentloc).innerHTML = '';
@@ -673,8 +672,10 @@ function recordMove(move, castled, promotion) {
 	var status = gameStatus(whosTurn);
 	if (status == 'stalemate') {
 		declareStalemate();
+		clearInterval(generalTimer);
 	} else if (status == 'checkmate') {
 		declareWinner(whosTurn, 'checkmate');
+		clearInterval(generalTimer);
 	}
 	
 	if (whosTurn == 'white') {
@@ -2384,32 +2385,20 @@ function canCastleQueenSide(king) {
 // Winning player logic
 
 function declareStalemate() {
-	var statuspar = document.createElement('p');
-	var statustext = document.createTextNode('Stalemate, game drawn');
-	statuspar.appendChild(statustext);
-	statuspar.style.margin = '0 auto';
-	statuspar.style.textAlign = 'center';
-	statuspar.style.fontSize = '30px';
-	document.body.appendChild(document.createElement('br'));
-	document.body.appendChild(statuspar);
+	var outcomeTextArea = document.getElementById('outcometext');
+	var statustext = 'Stalemate, game drawn';
+	outcomeTextArea.innerHTML = statustext;
 }
 
 function declareWinner(team, method) {
-	var statuspar = document.createElement('p');
+	var outcomeTextArea = document.getElementById('outcometext');
 	var statustext;
 	if (method == 'checkmate') {
-		statustext = document.createTextNode('Checkmate, ' + team + ' wins.');
+		statustext = 'Checkmate, ' + team + ' wins.';
 	} else if (method == 'time') {
-		statustext = document.createTextNode(team + ' wins on time.');
+		statustext = team + ' wins on time.';
 	}
-	statuspar.appendChild(statustext);
-	statuspar.style.margin = '0 auto';
-	statuspar.style.textAlign = 'center';
-	statuspar.style.fontSize = '30px';
-	statuspar.style.width = '1000px';
-	statuspar.style.marginTop = '480px';
-	document.body.appendChild(document.createElement('br'));
-	document.body.appendChild(statuspar);
+	outcomeTextArea.innerHTML = statustext;
 }
 
 // Timer logic

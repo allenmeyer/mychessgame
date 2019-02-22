@@ -5,7 +5,8 @@ html {
 
 #chesselement {
 	width: 100%;
-	height: 100%;
+	height: 450px;
+	margin-bottom: 50px;
 }
 
 #promotionmenu {
@@ -107,6 +108,13 @@ html {
 	position: relative;
 	height: 50px;
 	width: 50px;
+}
+
+#outcomediv {
+	margin: 0 auto;
+	text-align: center;
+	font-size: 30px;
+	clear: left;
 }
 
 .rowlabel {
