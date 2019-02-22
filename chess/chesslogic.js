@@ -924,7 +924,8 @@ function recordMove(move, castled, promotion) {
 	if (status == 'checkmate') {
 		text += '#';
 	} else if (status == 'stalemate') {
-		text += '&#189'; // 1/2 symbol
+		var drawtext = String.fromCharCode(/\d+/.exec('&#189;'));
+		text += drawtext; // 1/2 symbol
 	} else { // status == 'playing'
 		if (whosTurn == 'white') {
 			if (isInCheck(getKing('black'))) {
@@ -2383,32 +2384,32 @@ function canCastleQueenSide(king) {
 // Winning player logic
 
 function declareStalemate() {
-	var statusdiv = document.createElement('div');
+	var statuspar = document.createElement('p');
 	var statustext = document.createTextNode('Stalemate, game drawn');
-	statusdiv.appendChild(statustext);
-	statusdiv.style.margin = '0 auto';
-	statusdiv.style.textAlign = 'center';
-	statusdiv.style.fontSize = '30px';
-	document.body.appendChild(createElement('br'));
-	document.body.appendChild(statusdiv);
+	statuspar.appendChild(statustext);
+	statuspar.style.margin = '0 auto';
+	statuspar.style.textAlign = 'center';
+	statuspar.style.fontSize = '30px';
+	document.body.appendChild(document.createElement('br'));
+	document.body.appendChild(statuspar);
 }
 
 function declareWinner(team, method) {
-	var statusdiv = document.createElement('p');
+	var statuspar = document.createElement('p');
 	var statustext;
 	if (method == 'checkmate') {
 		statustext = document.createTextNode('Checkmate, ' + team + ' wins.');
 	} else if (method == 'time') {
 		statustext = document.createTextNode(team + ' wins on time.');
 	}
-	statusdiv.appendChild(statustext);
-	statusdiv.style.margin = '0 auto';
-	statusdiv.style.textAlign = 'center';
-	statusdiv.style.fontSize = '30px';
-	statusdiv.style.width = '1000px';
-	statusdiv.style.marginTop = '480px';
+	statuspar.appendChild(statustext);
+	statuspar.style.margin = '0 auto';
+	statuspar.style.textAlign = 'center';
+	statuspar.style.fontSize = '30px';
+	statuspar.style.width = '1000px';
+	statuspar.style.marginTop = '480px';
 	document.body.appendChild(document.createElement('br'));
-	document.body.appendChild(statusdiv);
+	document.body.appendChild(statuspar);
 }
 
 // Timer logic
