@@ -154,7 +154,7 @@
 				<label id = "whitetimer"><?php print($time); ?>:00</label>
 			</div>
 			<div id = "outcomediv">
-				<p id = "outcometext">asdfasdfasdfasdf</p>
+				<p id = "outcometext"></p>
 			</div>
 		</div>
 	</body>
