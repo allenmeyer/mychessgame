@@ -1565,7 +1565,7 @@ function knightMoveableSquares(knight) {
 		var square8loc = (loc.substring(0,1)-2).toString() + (loc.substring(1,2)-1).toString();
 		var square8 = $(square8loc);
 		if (!isOutOfBounds(square8loc)) {
-			if (isLegalMove(knight, square4loc)) {
+			if (isLegalMove(knight, square8loc)) {
 				if (isOccupied(square8loc)) {
 					if (isOppositeTeam(knight, getPieceByLocation(square8loc))) {
 						squares.push(square8);
