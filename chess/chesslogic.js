@@ -1535,7 +1535,7 @@ function knightMoveableSquares(knight) {
 		var square6loc = (loc.substring(0,1)-1).toString() + (loc.substring(1,2)-2).toString();
 		var square6 = $(square6loc);
 		if (!isOutOfBounds(square6loc)) {
-			if (isLegalMove(knight, square4loc)) {
+			if (isLegalMove(knight, square6loc)) {
 				if (isOccupied(square6loc)) {
 					if (isOppositeTeam(knight, getPieceByLocation(square6loc))) {
 						squares.push(square6);
@@ -1550,7 +1550,7 @@ function knightMoveableSquares(knight) {
 		var square7loc = (parseInt(loc.substring(0,1),10)+2).toString() + (loc.substring(1,2)-1).toString();
 		var square7 = $(square7loc);
 		if (!isOutOfBounds(square7loc)) {
-			if (isLegalMove(knight, square4loc)) {
+			if (isLegalMove(knight, square7loc)) {
 				if (isOccupied(square7loc)) {
 					if (isOppositeTeam(knight, getPieceByLocation(square7loc))) {
 						squares.push(square7);
