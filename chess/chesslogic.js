@@ -445,7 +445,7 @@ function movePiece(dot) {
 					$('11').innerHTML = '';
 					castledinfo = 'queenside';
 					prevMove = new Move(currentloc, square.id, prevMove,
-						[whitepieces[selectedPiece.index], whitepieces[getPieceByLocation('41').teamindex]]);
+						[getKing('white'), whitepieces[getPieceByLocation('41').teamindex]]);
 				} else if (square.id == '71') { // Kingside castle
 					addPieceToSquare(copyPiece(selectedPiece), square);
 					addPieceToSquare(copyPiece(getPieceByLocation('81')), $('61'));
@@ -453,7 +453,7 @@ function movePiece(dot) {
 					$('81').innerHTML = '';
 					castledinfo = 'kingside';
 					prevMove = new Move(currentloc, square.id, prevMove,
-						[whitepieces[selectedPiece.index], whitepieces[getPieceByLocation('61').teamindex]]);
+						[getKing('white'), whitepieces[getPieceByLocation('61').teamindex]]);
 				}
 			} else {
 				if (square.id == '38') { // Queenside castle
@@ -463,7 +463,7 @@ function movePiece(dot) {
 					$('18').innerHTML = '';
 					castledinfo = 'queenside';
 					prevMove = new Move(currentloc, square.id, prevMove,
-						[whitepieces[selectedPiece.index], whitepieces[getPieceByLocation('48').teamindex]]);
+						[getKing('black'), blackpieces[getPieceByLocation('48').teamindex]]);
 				} else if (square.id == '78') { // Kingside castle
 					addPieceToSquare(copyPiece(selectedPiece), square);
 					addPieceToSquare(copyPiece(getPieceByLocation('88')), $('68'));
@@ -471,7 +471,7 @@ function movePiece(dot) {
 					$('88').innerHTML = '';
 					castledinfo = 'kingside';
 					prevMove = new Move(currentloc, square.id, prevMove,
-						[whitepieces[selectedPiece.index], whitepieces[getPieceByLocation('68').teamindex]]);
+						[getKing('black'), blackpieces[getPieceByLocation('68').teamindex]]);
 				}
 			}
 		}
