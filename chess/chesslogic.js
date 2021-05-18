@@ -488,9 +488,6 @@ function movePiece(dot) {
 	
 		var type = selectedPiece.type;
 		if (type == 'pawn') {
-			if (!selectedPiece.hasmoved) {
-				selectedPiece.hasmoved = true;
-			}
 			if (selectedPiece.team == 'white') {
 				promotion = checkPromotion(selectedPiece);
 				prevMove = new Move(currentloc, square.id, prevMove, [whitepieces[index]]);
@@ -505,6 +502,9 @@ function movePiece(dot) {
 				prevMove = new Move(currentloc, square.id, prevMove, [blackpieces[index]]);
 			}
 		}
+	}
+	if (!selectedPiece.hasmoved) {
+		selectedPiece.hasmoved = true;
 	}
 	numMoves++;
 	clearDots();
